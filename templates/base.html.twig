@@ -3,10 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <h2> Base HTML </h2>
+{#    <h1>Hi I am {{ name }}!</h1>#}
+        {% block body %}
+            Go to <a href="{{ path('user_login') }}">User Login</a> <br>
+            Go to <a href="{{ path('user_register') }}">User Register</a>
+        {% endblock %}
+
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
