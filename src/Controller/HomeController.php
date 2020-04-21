@@ -13,10 +13,11 @@ class HomeController extends AbstractController
      * @Route("/",name="homepage")
      */
     public function home(){
-        $user = "Hristo";
+        $user = $this->getUser();
+
 
         return $this->render("base.html.twig",[
-            "name"=>$user
+                'user'=>$user
         ]);
     }
 

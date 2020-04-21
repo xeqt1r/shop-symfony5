@@ -9,7 +9,11 @@
     </head>
     <body>
     <h2> Base HTML </h2>
-{#    <h1>Hi I am {{ name }}!</h1>#}
+    {% if app.user %}
+        Hellooo There!
+    {% endif %}
+
+
         {% block body %}
             Go to <a href="{{ path('user_login') }}">User Login</a> <br>
             Go to <a href="{{ path('user_register') }}">User Register</a>
