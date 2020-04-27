@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,9 +47,17 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="user_logiut")
+     *@Route("/dashboard", name="user_dashboard")
+     *@Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
-    public function logout(){
+    public function dashboard(){
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        return $this->render("User/dashboard.html.twig",[
+            'user'=>$user
+        ]);
 
     }
 

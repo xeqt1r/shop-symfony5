@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    Dash board
+    <br>
+    Hello {{ user.fullName }}
+    <br>
+    <a href="{{ path('user_logout') }}">LogOut</a>
+
+{% endblock %}

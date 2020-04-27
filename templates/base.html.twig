@@ -9,14 +9,17 @@
     </head>
     <body>
     <h2> Base HTML </h2>
-    {% if app.user %}
-        Hellooo There!
-    {% endif %}
 
 
         {% block body %}
-            Go to <a href="{{ path('user_login') }}">User Login</a> <br>
-            Go to <a href="{{ path('user_register') }}">User Register</a>
+            {% if app.user %}
+                V profila sam
+                <a href="{{ path('user_logout') }}">LogOut</a>
+
+            {% else %}
+                Go to <a href="{{ path('user_login') }}">User Login</a> <br>
+                Go to <a href="{{ path('user_register') }}">User Register</a>
+            {% endif %}
         {% endblock %}
 
 

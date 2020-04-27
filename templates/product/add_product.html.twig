@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form method="post">
+        <input type="text" name="product[title]">
+        <input type="text" name="product[summary]">
+        <input type="submit" value="Add Product">
+    </form>
+{%endblock %}
