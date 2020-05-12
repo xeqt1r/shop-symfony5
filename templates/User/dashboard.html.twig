@@ -6,6 +6,16 @@
     <br>
     Hello {{ user.fullName }}
     <br>
+    <a href="{{ path('add_product') }}">Add Product</a>|
     <a href="{{ path('user_logout') }}">LogOut</a>
+
+    <h3> My Products </h3>
+
+    {% for product in myProducts %}
+        ------------------
+        <h4> {{ product.title }}</h4>
+        <p>{{ product.summary }}</p>
+        
+    {% endfor %}
 
 {% endblock %}

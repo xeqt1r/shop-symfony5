@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Product;
 use App\Entity\User;
 use App\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -51,12 +52,16 @@ class UserController extends AbstractController
      *@Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function dashboard(){
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
 
         /** @var User $user */
         $user = $this->getUser();
 
+        $myProducts = $productRepository->findBy(['userId'=> $user->getId()]);
+
         return $this->render("User/dashboard.html.twig",[
-            'user'=>$user
+            'user'=>$user,
+            'myProducts' => $myProducts
         ]);
 
     }
