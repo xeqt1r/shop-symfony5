@@ -57,7 +57,7 @@ class UserController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        $myProducts = $productRepository->findBy(['userId'=> $user->getId()]);
+        $myProducts = $productRepository->findAll();
 
         return $this->render("User/dashboard.html.twig",[
             'user'=>$user,

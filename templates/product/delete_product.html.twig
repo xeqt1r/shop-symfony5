@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Edit Product</h2>
+    <form method="post" action="{{ path('delete_product',{'id': product.id}) }}">
+        <label>
+            <input type="text" name="product[title]" value="{{ product.title }} " disabled>
+        </label>
+        <label>
+            <input type="text" name="product[summary]" value="{{ product.summary }}" disabled>
+        </label>
+
+        <input type="submit" value="Delete">
+    </form>
+
+{% endblock %}

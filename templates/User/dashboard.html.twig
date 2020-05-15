@@ -15,6 +15,9 @@
         ------------------
         <h4> {{ product.title }}</h4>
         <p>{{ product.summary }}</p>
+        <p>Created By "{{ product.owner.fullName }}"</p>
+        <a href="{{ path('view_product',{'id':product.id}) }}">View Product</a>
+        <br>
         
     {% endfor %}
 
