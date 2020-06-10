@@ -54,14 +54,15 @@ class ProductController extends AbstractController
      */
     public function viewProduct($id)
     {
-
+        /** @var Product $product */
         $product = $this->getDoctrine()->getRepository(Product::class)
             ->find($id);
 
 
         return $this->render('product/view_product.html.twig',
             [
-                'product' => $product
+                'product' => $product,
+                'comments' => $product->getComments()
             ]);
 
     }
@@ -111,12 +112,21 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted()) {
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($product);
-        $em->flush();
 
-        return $this->redirectToRoute("user_dashboard");
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($product);
+            $em->flush();
+
+            return $this->redirectToRoute("user_dashboard");
+        }
+
+
+        return $this->render('product/delete_product.html.twig',
+            [
+                'product' => $product
+            ]);
 
 
     }

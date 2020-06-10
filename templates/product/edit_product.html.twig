@@ -4,7 +4,7 @@
     <h2>Edit Product</h2>
     <form method="post" action="{{ path('edit_product',{'id': product.id}) }}">
         <label>
-            <input type="text" name="product[title]" value="{{ product.title }}">
+            <input type="text" name="product[title]" value="{{ product.title }}" >
         </label>
         <label>
             <input type="text" name="product[summary]" value="{{ product.summary }}">

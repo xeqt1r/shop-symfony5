@@ -4,7 +4,7 @@
 
     Dash board
     <br>
-    Hello {{ user.fullName }}
+     <h3 style="color: #5eb5e0">Hello {{ user.fullName }}</h3>
     <br>
     <a href="{{ path('add_product') }}">Add Product</a>|
     <a href="{{ path('user_logout') }}">LogOut</a>
@@ -15,7 +15,7 @@
         ------------------
         <h4> {{ product.title }}</h4>
         <p>{{ product.summary }}</p>
-        <p>Created By "{{ product.owner.fullName }}"</p>
+        <p style="color: green">Created By "{{ product.owner.fullName }}"</p>
         <a href="{{ path('view_product',{'id':product.id}) }}">View Product</a>
         <br>
         

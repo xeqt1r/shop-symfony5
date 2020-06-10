@@ -1,19 +1,37 @@
-{% extends 'base.html.twig'%}
+{% extends 'base.html.twig' %}
 
 {% block body %}
 
-<h2> View Product</h2>
+    <h2> View Product</h2>
 
-{{ product.title}}
-<br>
+    {{ product.title }}
+    <br>
     ----------
-<br>
-{{ product.summary }}
-<br>
-    {%  if product.owner == app.user %}
-        <a href="{{path('edit_product',{'id':product.id})}}">Edit</a>|
-        <a href="{{ path('delete_product',{'id':product.id})}}">Delete</a>
+    <br>
+    {{ product.summary }}
+    <br>
+    {% if product.owner == app.user %}
+        <a href="{{ path('edit_product',{'id':product.id}) }}">Edit</a>|
+        <a href="{{ path('delete_product',{'id':product.id}) }}">Delete</a>
     {% endif %}
+
+    <br>
+    <a href="{{ path('user_dashboard') }}">Dashboard</a>
+
+    <form method="post" action="{{ path('comment_add', {'productId': product.id}) }}">
+        <textarea name="comment[content]" cols="10" rows="10">
+        </textarea>
+
+        <input type="submit" value="Sent Comment">
+    </form>
+
+    <hr>
+
+    {% for comment in comments %}
+        <h4>{{ comment.content }}</h4>
+        <small> {{ comment.owner.fullName }} || {{ comment.dateAdded|date("H:i:s d/m/Y") }}</small>
+        <hr>
+    {% endfor %}
 
 
 {% endblock %}

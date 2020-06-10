@@ -43,6 +43,28 @@ class User implements UserInterface
     private $products;
 
     /**
+     * @return Comment[]|ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment[]|ArrayCollection $comments
+     */
+    public function setComments($comments): void
+    {
+        $this->comments = $comments;
+    }
+
+    /**
+     * @var ArrayCollection|Comment[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="owner")
+     */
+    private $comments;
+
+    /**
      * @return ArrayCollection
      */
     public function getProducts(): ArrayCollection

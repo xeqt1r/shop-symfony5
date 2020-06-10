@@ -9,9 +9,15 @@
     </head>
     <body>
     <h2> Base HTML </h2>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
 
         {% block body %}
+
             {% if app.user %}
                 V profila sam
                 <a href="{{ path('user_logout') }}">LogOut</a>

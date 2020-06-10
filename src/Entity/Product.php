@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\This;
 
@@ -48,6 +49,28 @@ class Product
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $owner;
+
+    /**
+     * @return Comment[]|ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment[]|ArrayCollection $comments
+     */
+    public function setComments($comments): void
+    {
+        $this->comments = $comments;
+    }
+
+    /**
+     * @var ArrayCollection| Comment[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product")
+     */
+    private $comments;
 
     /**
      * @return mixed
