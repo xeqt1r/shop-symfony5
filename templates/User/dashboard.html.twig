@@ -9,13 +9,16 @@
     <a href="{{ path('add_product') }}">Add Product</a>|
     <a href="{{ path('user_logout') }}">LogOut</a>
 
-    <h3> My Products </h3>
+    <h3> All Products </h3>
 
     {% for product in myProducts %}
         ------------------
         <h4> {{ product.title }}</h4>
         <p>{{ product.summary }}</p>
-        <p style="color: green">Created By "{{ product.owner.fullName }}"</p>
+        <p style="color: green">Created By "
+            <a href="{{ path('user_profile',{'userId':product.owner.id}) }}">{{ product.owner.fullName }}</a>
+            "
+        </p>
         <a href="{{ path('view_product',{'id':product.id}) }}">View Product</a>
         <br>
         

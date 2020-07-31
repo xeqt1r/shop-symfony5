@@ -7,9 +7,9 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Form\ProductType;
-use phpDocumentor\Reflection\Types\This;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +20,7 @@ class ProductController extends AbstractController
      * @Route("/add-product",name="add_product")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function addProduct(Request $request)
     {
@@ -71,7 +71,7 @@ class ProductController extends AbstractController
      * @Route("/edit-product/{id}", name="edit_product")
      * @param $id
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function editProduct($id, Request $request)
     {
@@ -102,7 +102,7 @@ class ProductController extends AbstractController
      * @param $id
      * @param Request $request
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function deleteProduct($id, Request $request)
     {

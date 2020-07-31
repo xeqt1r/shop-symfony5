@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * Comments
@@ -16,7 +17,7 @@ class Comment
 
     public function __construct()
     {
-        $this->dateAdded = new \DateTime('now');
+        $this->dateAdded = new DateTime('now');
     }
 
     /**
@@ -101,12 +102,12 @@ class Comment
         return $this;
     }
 
-    public function getDateAdded(): ?\DateTimeInterface
+    public function getDateAdded(): ?DateTimeInterface
     {
         return $this->dateAdded;
     }
 
-    public function setDateAdded(\DateTimeInterface $dateAdded): self
+    public function setDateAdded(DateTimeInterface $dateAdded): self
     {
         $this->dateAdded = $dateAdded;
 

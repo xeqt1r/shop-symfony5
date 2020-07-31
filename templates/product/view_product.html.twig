@@ -19,8 +19,10 @@
     <a href="{{ path('user_dashboard') }}">Dashboard</a>
 
     <form method="post" action="{{ path('comment_add', {'productId': product.id}) }}">
-        <textarea name="comment[content]" cols="10" rows="10">
-        </textarea>
+        <label>
+<textarea name="comment[content]" cols="10" rows="10">
+</textarea>
+        </label>
 
         <input type="submit" value="Sent Comment">
     </form>

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,7 +14,7 @@ class Message
 
     public function __construct()
     {
-        $this->dateAdded = new \DateTime("now");
+        $this->dateAdded = new DateTime("now");
     }
 
     /**
@@ -38,9 +40,57 @@ class Message
     private $dateAdded;
 
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="userSenderMessage")
+     */
     private $messageSender;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="userRecipientMessage")
+     */
     private $messageRecipient;
+
+    /**
+     * @return User
+     */
+    public function getMessageSender(): User
+    {
+        return $this->messageSender;
+    }
+
+    /**
+     * @param User $messageSender
+     * @return Message
+     */
+    public function setMessageSender(User $messageSender): Message
+    {
+        $this->messageSender = $messageSender;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getMessageRecipient(): User
+    {
+        return $this->messageRecipient;
+    }
+
+    /**
+     * @param User $messageRecipient
+     * @return Message
+     */
+    public function setMessageRecipient(User $messageRecipient)
+    {
+        $this->messageRecipient = $messageRecipient;
+        return $this;
+    }
+
+
 
     public function getId(): ?int
     {
@@ -71,12 +121,12 @@ class Message
         return $this;
     }
 
-    public function getDateAdded(): ?\DateTimeInterface
+    public function getDateAdded(): ?DateTimeInterface
     {
         return $this->dateAdded;
     }
 
-    public function setDateAdded(\DateTimeInterface $dateAdded): self
+    public function setDateAdded(DateTimeInterface $dateAdded): self
     {
         $this->dateAdded = $dateAdded;
 

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="color: #5eb5e0"> Тhe profile of {{ user.fullName }}</h1>
+    <a href="{{ path('homepage') }}">Home Page</a>
+
+    <form method="post" action="{{ path('send_message', {'recipientId': user.id}) }}">
+        <label>
+            <input type="text" name="message[messageTitle]" placeholder="Title">
+        </label>
+        <br>
+        <label>
+            <textarea name="message[messageContent]" cols="10" rows="10" placeholder="Message..." >
+            </textarea>
+        </label>
+        <input type="submit" value="Send Message">
+
+    </form>
+
+{% endblock %}

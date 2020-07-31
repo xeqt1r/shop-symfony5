@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -19,7 +19,10 @@
         {% block body %}
 
             {% if app.user %}
-                V profila sam
+                V profila sam <br>
+                <a href="{{ path('user_dashboard') }}">Dashboard</a>
+                <br>
+
                 <a href="{{ path('user_logout') }}">LogOut</a>
 
             {% else %}

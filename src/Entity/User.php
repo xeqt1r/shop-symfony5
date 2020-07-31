@@ -43,6 +43,62 @@ class User implements UserInterface
     private $products;
 
     /**
+     * @var ArrayCollection|Comment[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="owner")
+     */
+    private $comments;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="messageSender")
+     */
+    private $userSenderMessage;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="messageRecipient")
+     */
+    private $userRecipientMessage;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUserSenderMessage(): ArrayCollection
+    {
+        return $this->userSenderMessage;
+    }
+
+    /**
+     * @param ArrayCollection $userSenderMessage
+     */
+    public function setUserSenderMessage(ArrayCollection $userSenderMessage): void
+    {
+        $this->userSenderMessage = $userSenderMessage;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUserRecipientMessage(): ArrayCollection
+    {
+        return $this->userRecipientMessage;
+    }
+
+    /**
+     * @param ArrayCollection $userRecipientMessage
+     */
+    public function setUserRecipientMessage(ArrayCollection $userRecipientMessage): void
+    {
+        $this->userRecipientMessage = $userRecipientMessage;
+    }
+
+
+
+
+
+    /**
      * @return Comment[]|ArrayCollection
      */
     public function getComments()
@@ -58,11 +114,7 @@ class User implements UserInterface
         $this->comments = $comments;
     }
 
-    /**
-     * @var ArrayCollection|Comment[]
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="owner")
-     */
-    private $comments;
+
 
     /**
      * @return ArrayCollection

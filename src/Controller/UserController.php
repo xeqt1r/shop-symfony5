@@ -10,6 +10,7 @@ use App\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -20,7 +21,7 @@ class UserController extends AbstractController
      * @Route("/register", name="user_register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder ){
 
@@ -62,6 +63,23 @@ class UserController extends AbstractController
         return $this->render("User/dashboard.html.twig",[
             'user'=>$user,
             'myProducts' => $myProducts
+        ]);
+
+    }
+
+
+    /**
+     * @Route("/profile/{userId}", name="user_profile")
+     * @param $userId
+     * @return Response
+     */
+    public function profile($userId){
+
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $user = $userRepository->find($userId);
+
+        return $this->render("User/profile.html.twig",[
+            'user'=>$user
         ]);
 
     }

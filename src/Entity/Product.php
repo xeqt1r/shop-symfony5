@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * Products
@@ -16,7 +17,7 @@ class Product
 {
     public function __construct()
     {
-        $this->dateAdded = new \DateTime('now');
+        $this->dateAdded = new DateTime('now');
     }
 
 
@@ -51,6 +52,17 @@ class Product
     private $owner;
 
     /**
+     * @var ArrayCollection| Comment[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product")
+     */
+    private $comments;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAdded;
+
+    /**
      * @return Comment[]|ArrayCollection
      */
     public function getComments()
@@ -66,11 +78,6 @@ class Product
         $this->comments = $comments;
     }
 
-    /**
-     * @var ArrayCollection| Comment[]
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="product")
-     */
-    private $comments;
 
     /**
      * @return mixed
@@ -106,10 +113,7 @@ class Product
         return $this;
     }
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateAdded;
+
 
     public function getId(): ?int
     {
@@ -140,12 +144,12 @@ class Product
         return $this;
     }
 
-    public function getDateAdded(): ?\DateTimeInterface
+    public function getDateAdded(): ?DateTimeInterface
     {
         return $this->dateAdded;
     }
 
-    public function setDateAdded(\DateTimeInterface $dateAdded): self
+    public function setDateAdded(DateTimeInterface $dateAdded): self
     {
         $this->dateAdded = $dateAdded;
 

@@ -3,8 +3,12 @@
 {% block body %}
 
     <form method="post">
-        <input type="text" name="product[title]">
-        <input type="text" name="product[summary]">
+        <label>
+            <input type="text" name="product[title]">
+        </label>
+        <label>
+            <input type="text" name="product[summary]">
+        </label>
         <input type="submit" value="Add Product">
     </form>
 {%endblock %}
